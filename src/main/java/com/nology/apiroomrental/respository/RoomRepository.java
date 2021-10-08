@@ -11,4 +11,8 @@ public class RoomRepository {
     public void addRoom(Room newRoom) {
         roomDatabase.add(newRoom);
     }
+
+    public List<Room> findAllRooms() {
+        return roomDatabase;
+    }
 }
