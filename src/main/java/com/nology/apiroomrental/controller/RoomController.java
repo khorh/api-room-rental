@@ -5,10 +5,7 @@ import com.nology.apiroomrental.entity.Room;
 import com.nology.apiroomrental.respository.RoomRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,6 +28,10 @@ public class RoomController {
     }
 
     // Read a room based on its id
+    @GetMapping("/rooms/{id}")
+    public ResponseEntity<Room> getARoom(@PathVariable int id) {
+        return ResponseEntity.status(HttpStatus.OK).body(repository.findRoomById(id));
+    }
 
     // Update a room based on its id
 

@@ -19,4 +19,12 @@ public class RoomRepository {
     public List<Room> findAllRooms() {
         return roomDatabase;
     }
+
+    public Room findRoomById(int id) {
+        Room foundRoom = roomDatabase.stream()
+                .filter((room) -> room.getId() == id)
+                .findFirst()
+                .orElse(null);
+        return foundRoom;
+    }
 }

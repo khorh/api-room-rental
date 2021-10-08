@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nology.apiroomrental.entity.Room;
 import com.nology.apiroomrental.respository.RoomRepository;
+import org.hamcrest.core.StringContains;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +50,18 @@ public class RoomControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(3)))
                 .andExpect(jsonPath("$[0].roomName", is("penthouse")))
+                .andReturn();
+    }
+
+    @Test
+    @DisplayName("Read route should return a room based on id")
+    public void readRouteShouldReturnARoomBasedOnId() throws Exception {
+        mockMvc.perform(get("/rooms/1"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id", is(1)))
+                .andExpect(jsonPath("$.roomName", is("penthouse")))
+                .andExpect(jsonPath("$.roomFacilities", hasSize(1)))
+                .andExpect(jsonPath("$.pricePerNight", is(300)))
                 .andReturn();
     }
 
