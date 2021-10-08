@@ -1,7 +1,7 @@
 # API - ROOM RENTAL
 
 ### Overview
-An API to create, read, update and delete rooms.
+An RESTful API to create, read, update and delete rooms using Spring Boot.
 
 ### 1. Project's objective
 To learn Java for back-end development using Spring.
