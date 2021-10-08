@@ -1,7 +1,7 @@
-# API - CARS
+# API - ROOM RENTAL
 
 ### Overview
-An API to create, read, update and delete cars.
+An API to create, read, update and delete rooms.
 
 ### 1. Project's objective
 To learn Java for back-end development using Spring.
