@@ -4,15 +4,13 @@ public class Room {
     // Properties
     private int id;
     private String roomName;
-    private String roomDescription;
     private String[] roomFacilities;
     private int pricePerNight;
 
     // Constructor
-    public Room(int id, String roomName, String roomDescription, String[] roomFacilities, int pricePerNight) {
+    public Room(int id, String roomName, String[] roomFacilities, int pricePerNight) {
         this.id = id;
         this.roomName = roomName;
-        this.roomDescription = roomDescription;
         this.roomFacilities = roomFacilities;
         this.pricePerNight = pricePerNight;
     }
@@ -32,14 +30,6 @@ public class Room {
 
     public void setRoomName(String roomName) {
         this.roomName = roomName;
-    }
-
-    public String getRoomDescription() {
-        return roomDescription;
-    }
-
-    public void setRoomDescription(String roomDescription) {
-        this.roomDescription = roomDescription;
     }
 
     public String[] getRoomFacilities() {

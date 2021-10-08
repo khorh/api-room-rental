@@ -21,7 +21,7 @@ public class RoomController {
     public ResponseEntity<Message> createRoom(@RequestBody Room newRoom) {
         repository.addRoom(newRoom);
         Message successMessage = new Message("Successfully added new room");
-        return ResponseEntity.status(HttpStatus.OK).body(successMessage);
+        return ResponseEntity.status(HttpStatus.CREATED).body(successMessage);
     }
 
     // Read all existing rooms
