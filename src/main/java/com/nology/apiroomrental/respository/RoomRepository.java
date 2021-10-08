@@ -1,6 +1,7 @@
 package com.nology.apiroomrental.respository;
 
 import com.nology.apiroomrental.entity.Room;
+import com.nology.apiroomrental.exceptions.ResourceNotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,22 +21,23 @@ public class RoomRepository {
         return roomDatabase;
     }
 
-    public Room findRoomById(int id) {
+    public Room findRoomById(int id) throws ResourceNotFoundException {
         Room foundRoom = roomDatabase.stream()
                 .filter((room) -> room.getId() == id)
                 .findFirst()
                 .orElse(null);
+        if (foundRoom == null) throw new ResourceNotFoundException("Invalid id " + id + ", please try again.");
         return foundRoom;
     }
 
-    public Room changeRoomById(int id, Room newRoom) {
+    public Room changeRoomById(int id, Room newRoom) throws ResourceNotFoundException {
         Room existingRoom = findRoomById(id);
         int index = roomDatabase.indexOf(existingRoom);
         roomDatabase.set(index, newRoom);
         return existingRoom;
     }
 
-    public void deleteRoomById(int id) {
+    public void deleteRoomById(int id) throws ResourceNotFoundException {
         roomDatabase.remove(findRoomById(id));
     }
 }

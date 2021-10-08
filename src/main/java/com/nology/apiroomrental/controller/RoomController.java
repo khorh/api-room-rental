@@ -2,6 +2,7 @@ package com.nology.apiroomrental.controller;
 
 import com.nology.apiroomrental.entity.Message;
 import com.nology.apiroomrental.entity.Room;
+import com.nology.apiroomrental.exceptions.ResourceNotFoundException;
 import com.nology.apiroomrental.respository.RoomRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,13 +30,13 @@ public class RoomController {
 
     // Read a room based on its id
     @GetMapping("/rooms/{id}")
-    public ResponseEntity<Room> getARoom(@PathVariable int id) {
+    public ResponseEntity<Room> getARoom(@PathVariable int id) throws ResourceNotFoundException {
         return ResponseEntity.status(HttpStatus.OK).body(repository.findRoomById(id));
     }
 
     // Update a room based on its id
     @PutMapping("/rooms/{id}")
-    public ResponseEntity<Message> updateARoom(@PathVariable int id, @RequestBody Room newRoom) {
+    public ResponseEntity<Message> updateARoom(@PathVariable int id, @RequestBody Room newRoom) throws ResourceNotFoundException {
         repository.changeRoomById(id, newRoom);
         Message successMessage = new Message("Successfully updated a room");
         return ResponseEntity.status(HttpStatus.OK).body(successMessage);
@@ -43,7 +44,7 @@ public class RoomController {
 
     // Delete a room based on its id
     @DeleteMapping("/rooms/{id}")
-    public ResponseEntity<Message> deleteARoom(@PathVariable int id) {
+    public ResponseEntity<Message> deleteARoom(@PathVariable int id) throws ResourceNotFoundException {
         repository.deleteRoomById(id);
         Message successMessage = new Message("Successfully deleted a room");
         return ResponseEntity.status(HttpStatus.OK).body(successMessage);

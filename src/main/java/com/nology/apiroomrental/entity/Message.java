@@ -2,15 +2,15 @@ package com.nology.apiroomrental.entity;
 
 public class Message {
     // Property
-    private String message;
+    private final String text;
 
     // Constructor
-    public Message(String message) {
-        this.message = message;
+    public Message(String text) {
+        this.text = text;
     }
 
     // Getter
-    public String getMessage() {
-        return message;
+    public String getText() {
+        return text;
     }
 }

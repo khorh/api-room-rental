@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nology.apiroomrental.entity.Room;
 import com.nology.apiroomrental.respository.RoomRepository;
-import org.hamcrest.core.StringContains;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +37,7 @@ public class RoomControllerTest {
                 .content(toJson(newRoom))
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.message", is("Successfully added new room")))
+                .andExpect(jsonPath("$.text", is("Successfully added new room")))
                 .andReturn();
 
         mockMvc.perform(delete("/rooms/4"));
@@ -74,7 +73,7 @@ public class RoomControllerTest {
                 .content(toJson(changeRoom))
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.message", is("Successfully updated a room")))
+                .andExpect(jsonPath("$.text", is("Successfully updated a room")))
                 .andReturn();
     }
     // Change to message
@@ -84,7 +83,7 @@ public class RoomControllerTest {
     public void deleteRouteShouldDeleteTheRoomBasedOnIdAndReturnASuccessMessage() throws Exception {
         mockMvc.perform(delete("/rooms/3"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.message", is("Successfully deleted a room")))
+                .andExpect(jsonPath("$.text", is("Successfully deleted a room")))
                 .andReturn();
 
     }
