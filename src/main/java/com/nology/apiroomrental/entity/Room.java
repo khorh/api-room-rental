@@ -1,4 +1,4 @@
-package com.nology.apiroomrental.room;
+package com.nology.apiroomrental.entity;
 
 public class Room {
     // Properties
