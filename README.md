@@ -19,4 +19,5 @@ To learn Java for back-end development using Spring.
 - An entity/model/object called 'Room' to provide the properties, constructor and getters & setters.
 - An entity called 'Message' for handling statuses.
 - A local repository to hold the room database when used in conjunction with Postman.
+- An exception when there is no valid id.
 - Completed all tests for the different routes.
