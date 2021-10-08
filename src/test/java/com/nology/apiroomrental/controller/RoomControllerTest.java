@@ -21,7 +21,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest(RoomController.class)
 public class RoomControllerTest {
-    private final Room newRoom = new Room(4, "Family room", new String[]{"multiple sinks", "bunk beds"}, 150);
+    private final Room newRoom = new Room(4, "family room", new String[]{"multiple sinks", "bunk beds"}, 150);
+    private final Room changeRoom = new Room(2, "posh room", new String[] {"espresso machine", "dyson hairdryer"}, 200);
 
     @Autowired
     private MockMvc mockMvc;
@@ -40,7 +41,7 @@ public class RoomControllerTest {
                 .andExpect(jsonPath("$.message", is("Successfully added new room")))
                 .andReturn();
 
-        mockMvc.perform(delete("/recipes/4"));
+        mockMvc.perform(delete("/rooms/4"));
     }
 
     @Test
@@ -63,6 +64,29 @@ public class RoomControllerTest {
                 .andExpect(jsonPath("$.roomFacilities", hasSize(1)))
                 .andExpect(jsonPath("$.pricePerNight", is(300)))
                 .andReturn();
+    }
+
+    @Test
+    @DisplayName("Updated route should change the room based on id and return a success message")
+    public void updatedRouteShouldChangeTheRoomBasedOnIdAndReturnASuccessMessage() throws Exception {
+        mockMvc.perform(put("/rooms/2")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(toJson(changeRoom))
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.message", is("Successfully updated a room")))
+                .andReturn();
+    }
+    // Change to message
+
+    @Test
+    @DisplayName("Delete route should delete the room based on id and return a success message")
+    public void deleteRouteShouldDeleteTheRoomBasedOnIdAndReturnASuccessMessage() throws Exception {
+        mockMvc.perform(delete("/rooms/3"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.message", is("Successfully deleted a room")))
+                .andReturn();
+
     }
 
     private static String toJson(Room newRoom) throws JsonProcessingException {

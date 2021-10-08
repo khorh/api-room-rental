@@ -27,4 +27,15 @@ public class RoomRepository {
                 .orElse(null);
         return foundRoom;
     }
+
+    public Room changeRoomById(int id, Room newRoom) {
+        Room existingRoom = findRoomById(id);
+        int index = roomDatabase.indexOf(existingRoom);
+        roomDatabase.set(index, newRoom);
+        return existingRoom;
+    }
+
+    public void deleteRoomById(int id) {
+        roomDatabase.remove(findRoomById(id));
+    }
 }

@@ -34,6 +34,18 @@ public class RoomController {
     }
 
     // Update a room based on its id
+    @PutMapping("/rooms/{id}")
+    public ResponseEntity<Message> updateARoom(@PathVariable int id, @RequestBody Room newRoom) {
+        repository.changeRoomById(id, newRoom);
+        Message successMessage = new Message("Successfully updated a room");
+        return ResponseEntity.status(HttpStatus.OK).body(successMessage);
+    }
 
     // Delete a room based on its id
+    @DeleteMapping("/rooms/{id}")
+    public ResponseEntity<Message> deleteARoom(@PathVariable int id) {
+        repository.deleteRoomById(id);
+        Message successMessage = new Message("Successfully deleted a room");
+        return ResponseEntity.status(HttpStatus.OK).body(successMessage);
+    }
 }
